@@ -1,0 +1,22 @@
+[
+   {
+     "name": "qhse-broadcast-service",
+     "image": "743515054768.dkr.ecr.ap-south-1.amazonaws.com/app-central-apps-prod:broadcast",
+     "essential": true,
+     "portMappings": [
+       {
+         "containerPort": 80,
+         "hostPort": 80
+       }
+     ],
+     "logConfiguration": {
+       "logDriver": "awslogs",
+       "options": {
+         "awslogs-group": "qhse-broadcast-prod-logs",
+         "awslogs-region": "ap-south-1",
+         "awslogs-stream-prefix": "service-log"
+       }
+     }
+   }
+ ]
+
