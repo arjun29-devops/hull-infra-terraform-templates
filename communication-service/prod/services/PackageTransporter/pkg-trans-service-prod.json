@@ -1,0 +1,22 @@
+[
+   {
+     "name": "pkg-trans-service-prod",
+     "image": "743515054768.dkr.ecr.ap-south-1.amazonaws.com/comm-svc-pkg-trans-ecr-prod:latest",
+     "essential": true,
+     "portMappings": [
+       {
+         "containerPort": 80,
+         "hostPort": 80
+       }
+     ],
+     "logConfiguration": {
+       "logDriver": "awslogs",
+       "options": {
+         "awslogs-group": "pkg-trans-logs-prod",
+         "awslogs-region": "ap-south-1",
+         "awslogs-stream-prefix": "service-log"
+       }
+     }
+   }
+ ]
+ 

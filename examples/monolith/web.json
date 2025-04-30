@@ -1,0 +1,75 @@
+[
+  {
+    "name": "${ container_name }",
+    "image": "${ image_name }",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "secrets": [
+      {
+        "name": "ASPNETCORE_ENVIRONMENT",
+        "valueFrom": "/crewwage/dev/ASPNETCORE_ENVIRONMENT"
+      },
+      {
+        "name": "ConnectionStrings__CrewWageDB",
+        "valueFrom": "/crewwage/dev/ConnectionStrings__CrewWageDB"
+      },
+      {
+        "name": "ConnectionStrings__VesselDB",
+        "valueFrom": "/crewwage/dev/ConnectionStrings__VesselDB"
+      },
+      {
+        "name": "ConnectionStrings__SeafarerDB",
+        "valueFrom": "/crewwage/dev/ConnectionStrings__SeafarerDB"
+      },
+      {
+        "name": "ConnectionStrings__MasterDB",
+        "valueFrom": "/crewwage/dev/ConnectionStrings__MasterDB"
+      },
+      {
+        "name": "IdentityServer__BaseUrl",
+        "valueFrom": "/crewwage/dev/IdentityServer__BaseUrl"
+      },
+      {
+        "name": "IdentityServer__IntrospectionPath",
+        "valueFrom": "/crewwage/dev/IdentityServer__IntrospectionPath"
+      },
+      {
+        "name": "IdentityServer__ApiName",
+        "valueFrom": "/crewwage/dev/IdentityServer__ApiName"
+      },
+      {
+        "name": "IdentityServer__ApiSecretKey",
+        "valueFrom": "/crewwage/dev/IdentityServer__ApiSecretKey"
+      },
+      {
+        "name": "AwsS3__BucketName",
+        "valueFrom": "/crewwage/dev/AwsS3__BucketName"
+      },
+      {
+        "name": "AwsS3__AccessKey",
+        "valueFrom": "/crewwage/dev/AwsS3__AccessKey"
+      },
+      {
+        "name": "AwsS3__SecretAccessKey",
+        "valueFrom": "/crewwage/dev/AwsS3__SecretAccessKey"
+      },
+      {
+        "name": "AwsS3__Region",
+        "valueFrom": "/crewwage/dev/AwsS3__Region"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${ project_name }-${ env }",
+        "awslogs-region": "ap-south-1",
+        "awslogs-stream-prefix": "${ container_name }-log"
+      }
+    }
+  }
+]

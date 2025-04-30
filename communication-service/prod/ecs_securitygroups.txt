@@ -1,0 +1,131 @@
+# ECS SG's
+
+# Event Service SG : Connect to Public LB
+resource "aws_security_group" "ecs_sg_event" {
+  name   = "${var.ProjectName}-ecs-sg-event-${var.env}"
+  vpc_id = var.vpcId
+
+  ingress {
+    from_port       = var.event_ecs_container_port
+    to_port         = var.event_ecs_container_port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sec-grps["Alb-SG"].id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.ProjectName}-ecs-sg-event-${var.env}"
+    ProjectName = var.ProjectName
+    CreatedBy   = var.CreatedBy
+  }
+}
+
+# Receive Service SG : Connect to Private LB
+resource "aws_security_group" "ecs_sg_receive" {
+  name   = "${var.ProjectName}-ecs-sg-receive-${var.env}"
+  vpc_id = var.vpcId
+
+  ingress {
+    from_port       = var.receive_ecs_container_port
+    to_port         = var.receive_ecs_container_port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sec-grps["Alb-SG"].id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.ProjectName}-ecs-sg-receive-${var.env}"
+    ProjectName = var.ProjectName
+    CreatedBy   = var.CreatedBy
+  }
+}
+
+# Package creator Service SG : Connect to Private LB
+resource "aws_security_group" "ecs_sg_pkg_creator" {
+  name   = "${var.ProjectName}-ecs-sg-pkg-creator-${var.env}"
+  vpc_id = var.vpcId
+
+  ingress {
+    from_port       = var.pkg_creator_ecs_container_port
+    to_port         = var.pkg_creator_ecs_container_port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sec-grps["Alb-SG"].id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.ProjectName}-ecs-sg-pkg-creator-${var.env}"
+    ProjectName = var.ProjectName
+    CreatedBy   = var.CreatedBy
+  }
+}
+
+# Package transporter Service SG : Connect to Private LB
+resource "aws_security_group" "ecs_sg_pkg_transporter" {
+  name   = "${var.ProjectName}-ecs-sg-pkg-trans-${var.env}"
+  vpc_id = var.vpcId
+
+  ingress {
+    from_port       = var.pkg_transporter_ecs_container_port
+    to_port         = var.pkg_transporter_ecs_container_port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sec-grps["Alb-SG"].id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.ProjectName}-ecs-sg-pkg-trans-${var.env}"
+    ProjectName = var.ProjectName
+    CreatedBy   = var.CreatedBy
+  }
+}
+
+# Admin Service SG : Connect to Private LB
+resource "aws_security_group" "ecs_sg_admin" {
+  name   = "${var.ProjectName}-ecs-sg-admin-${var.env}"
+  vpc_id = var.vpcId
+
+  ingress {
+    from_port       = var.admin_ecs_container_port
+    to_port         = var.admin_ecs_container_port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.sec-grps["Alb-SG"].id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.ProjectName}-ecs-sg-admin-${var.env}"
+    ProjectName = var.ProjectName
+    CreatedBy   = var.CreatedBy
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Communication SVC API",
+    "version": "2020-11-11T18:16:22Z",
+    "title": "communication-svc-stg"
+  },
+  "host": "",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Content-Type": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
